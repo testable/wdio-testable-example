@@ -17,12 +17,7 @@ exports.config = {
   "loglevel": "command",
   "coloredLogs": true,
   "framework": "mocha",
-  "reporters": [
-    "dot", "json"
-  ],
-  "reporterOptions": {
-    "outputDir": (process.env.OUTPUT_DIR || ".") + "/automation-test-results"
-  },
+  "reporters": [ "dot" ],
   "mochaOpts": {
     "ui": "bdd"
   }
