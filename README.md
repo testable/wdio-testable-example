@@ -50,4 +50,4 @@ To capture the pass/fail counts for assertions during your test simply add the f
 }
 ```
 
-Testable will read the JSON output after wdio finishes and capture the number of assertions that passed as `wdioPass` and the failures as `wdioFail`.
+Testable will read the JSON output after wdio finishes and capture assertion metrics as `wdioPassed`, `wdioFailed`, `wdioSkipped`.
