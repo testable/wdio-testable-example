@@ -8,7 +8,7 @@ See the [Testable Webdriver.io guide](https://testable.io/documentation/selenium
 
 Each capability in your configuration file must have a proxy specified. See the example configuration file which has the following:
 
-```json
+```javascript
 {
   "browserName": "chrome",
   "maxInstances": 1,
