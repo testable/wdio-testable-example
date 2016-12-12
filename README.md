@@ -36,3 +36,18 @@ browser.saveScreenshot(process.env.OUTPUT_DIR + '/snapshot.png');
 If your [Testable scenario is parameterized](https://testable.io/documentation/selenium/overview.html) they are accessible as environment variables.
 
 For example, the `TestVar` parameter is accessible as `process.env.PARAMS_TESTVAR`.
+
+### Capturing Assertions
+
+To capture the pass/fail counts for assertions during your test simply add the following to your configuration file:
+
+```javascript
+{
+	reporters: ['json'],
+	reporterOptions: {
+    	outputDir: (process.env.OUTPUT_DIR || ".") + "/automation-test-results"
+  	}
+}
+```
+
+Testable will read the JSON output after wdio finishes and capture the number of assertions that passed as `wdioPass` and the failures as `wdioFail`.
