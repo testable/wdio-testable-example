@@ -25,10 +25,10 @@ Each capability in your configuration file must have a proxy specified. See the 
 
 Any file written to the directory indicated by the `OUTPUT_DIR` environment variable will be captured as part of your [Testable](https://testable.io) test results.
 
-For example:
+For example (if run locally it will write to the current directory):
 
 ```javascript
-browser.saveScreenshot(process.env.OUTPUT_DIR + '/snapshot.png');
+browser.saveScreenshot((process.env.OUTPUT_DIR || '.') + '/snapshot.png');
 ```
 
 ### Testable Parameters
