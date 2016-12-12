@@ -51,3 +51,5 @@ To capture the pass/fail counts for assertions during your test simply add the f
 ```
 
 Testable will read the JSON output after wdio finishes and capture assertion metrics as `wdioPassed`, `wdioFailed`, `wdioSkipped`.
+
+Note that if you do not care to capture the JSON test results as output you can simply set the `outputDir` to `./automation-test-results`.
