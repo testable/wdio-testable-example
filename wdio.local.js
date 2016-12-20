@@ -23,7 +23,9 @@ exports.config = {
   reporterOptions: {
     outputDir: (process.env.OUTPUT_DIR || ".") + "/automation-test-results"
   },
+  waitForTimeout: 40000,
   mochaOpts: {
-    ui: "bdd"
+    ui: "bdd",
+    timeout: 40000
   }
 };
