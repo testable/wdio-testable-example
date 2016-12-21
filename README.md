@@ -35,7 +35,7 @@ browser.saveScreenshot((process.env.OUTPUT_DIR || '.') + '/snapshot.png');
 
 If your [Testable scenario is parameterized](https://testable.io/documentation/selenium/overview.html) they are accessible as environment variables.
 
-For example, the `TestVar` parameter is accessible as `process.env.PARAMS_TESTVAR`.
+For example, the `TestVar` parameter is accessible as `process.env.PARAM_TESTVAR`.
 
 ### Capturing Assertions
 
