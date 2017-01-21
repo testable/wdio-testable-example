@@ -24,7 +24,7 @@ For example, the `TestVar` parameter is accessible as `process.env.PARAM_TESTVAR
 
 Testable will capture all assertions during your test and report them as metrics `wdioPassed`, `wdioFailed`, `wdioSkipped`. Check out the [custom dashboard documentation](https://testable.io/documentation/guides/customize-dashboard.html) for a guide on how to add these metrics to your test results dashboard.
 
-### Metrics, Timings, Logging, CSV, and more
+### Metrics, Timings, Logging, CSVs, and more
 
 See the [testable-utils](https://github.com/testable/node-script-utils) package for more details on the following features:
 

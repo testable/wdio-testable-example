@@ -10,7 +10,9 @@ exports.config = {
   loglevel: "command",
   coloredLogs: true,
   framework: "mocha",
+  waitforTimeout: 40000,
   mochaOpts: {
-    ui: "bdd"
+    ui: "bdd",
+    timeout: 40000
   }
 };
