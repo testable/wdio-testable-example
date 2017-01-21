@@ -4,23 +4,6 @@ An example [Webdriver.io test runner configuration](http://webdriver.io/guide/te
 
 See the [Testable Webdriver.io guide](https://testable.io/documentation/selenium/overview.html) for more details.
 
-### Capabilities
-
-Each capability in your configuration file must have a proxy specified. See the example configuration file which has the following:
-
-```javascript
-{
-  "browserName": "chrome",
-  "maxInstances": 1,
-  "acceptSslCerts": true,
-  "proxy": {
-    "proxyType": process.env.PROXY ? "manual" : "direct",
-    "httpProxy": process.env.PROXY,
-    "sslProxy": process.env.PROXY
-  }
-}
-```
-
 ### Screenshots and Output Files
 
 Any file written to the directory indicated by the `OUTPUT_DIR` environment variable will be captured as part of your [Testable](https://testable.io) test results.
@@ -35,21 +18,19 @@ browser.saveScreenshot((process.env.OUTPUT_DIR || '.') + '/snapshot.png');
 
 If your [Testable scenario is parameterized](https://testable.io/documentation/selenium/overview.html) they are accessible as environment variables.
 
-For example, the `TestVar` parameter is accessible as `process.env.PARAMS_TESTVAR`.
+For example, the `TestVar` parameter is accessible as `process.env.PARAM_TESTVAR`.
 
 ### Capturing Assertions
 
-To capture the pass/fail counts for assertions during your test simply add the following to your configuration file:
+Testable will capture all assertions during your test and report them as metrics `wdioPassed`, `wdioFailed`, `wdioSkipped`. Check out the [custom dashboard documentation](https://testable.io/documentation/guides/customize-dashboard.html) for a guide on how to add these metrics to your test results dashboard.
 
-```javascript
-{
-	reporters: ['json'],
-	reporterOptions: {
-    	outputDir: (process.env.OUTPUT_DIR || ".") + "/automation-test-results"
-  	}
-}
-```
+### Metrics, Timings, Logging, CSV, and more
 
-Testable will read the JSON output after wdio finishes and capture assertion metrics as `wdioPassed`, `wdioFailed`, `wdioSkipped`.
+See the [testable-utils](https://github.com/testable/node-script-utils) package for more details on the following features:
 
-Note that if you do not care to capture the JSON test results as output you can simply set the `outputDir` to `./automation-test-results`.
+* [Custom Metrics](https://github.com/testable/node-script-utils#custom-metrics)
+* [Stopwatch](https://github.com/testable/node-script-utils#stopwatch)
+* [Logging](https://github.com/testable/node-script-utils#logging)
+* [CSV](https://github.com/testable/node-script-utils#csv)
+* [Execution Info](https://github.com/testable/node-script-utils#execution-info)
+* [Webdriver.io Custom Commands](https://github.com/testable/node-script-utils#webdriverio-commands)
