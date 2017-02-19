@@ -9,6 +9,6 @@
     "mocha": "~2.3.3",
     "webdriverio": "4.4.0",
     "wdio-mocha-framework": "^0.5.4",
-    "testable-utils": "0.0.23"
+    "testable-utils": "0.0.26"
   }
 }
