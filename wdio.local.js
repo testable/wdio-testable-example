@@ -4,7 +4,7 @@ exports.config = {
   ],
   capabilities: [
     {
-      browserName: "firefox"
+      browserName: "chrome"
     }
   ],
   loglevel: "command",
