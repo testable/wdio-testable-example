@@ -7,7 +7,7 @@
     "chai": "~4.1.0",
     "chai-as-promised": "7.1.1",
     "mocha": "~3.4.2",
-    "testable-utils": "0.1.2",
+    "testable-utils": "0.1.3",
     "webdriverio": "4.8.0",
     "wdio-mocha-framework": "^0.5.10"
   }
