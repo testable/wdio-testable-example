@@ -1,14 +1,11 @@
 {
   "name": "wdio-testable-example",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Simple WebDriver.io Testable Example",
   "author": "Testable",
   "devDependencies": {
-    "chai": "~4.1.0",
-    "chai-as-promised": "7.1.1",
-    "mocha": "~3.4.2",
-    "testable-utils": "0.1.2",
-    "webdriverio": "4.8.0",
-    "wdio-mocha-framework": "^0.5.10"
+    "testable-utils": "0.2.12",
+    "webdriverio": "4.14.1",
+    "wdio-mocha-framework": "^0.6.4"
   }
 }
