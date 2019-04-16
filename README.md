@@ -1,6 +1,8 @@
 # Webdriver.io Testable Example
 
-An example [Webdriver.io test runner configuration](http://webdriver.io/guide/testrunner/configurationfile.html) and test spec that is compatible with [Testable](https://testable.io).
+**Upgraded to Webdriver.io v5**. Check the v4 branch for an example that is compatible with Webdriver.io v4.x.
+
+An example [Webdriver.io test runner configuration](https://webdriver.io/docs/configurationfile.html) and test spec that is compatible with [Testable](https://testable.io).
 
 See the [Testable Webdriver.io guide](https://testable.io/documentation/selenium/overview.html) for more details.
 
@@ -22,7 +24,7 @@ For example, the `TestVar` parameter is accessible as `process.env.PARAM_TESTVAR
 
 ### Capturing Assertions
 
-Testable will capture all assertions during your test and report them as metrics `wdioPassed`, `wdioFailed`, `wdioSkipped`. Check out the [custom dashboard documentation](https://testable.io/documentation/guides/customize-dashboard.html) for a guide on how to add these metrics to your test results dashboard.
+Testable will capture all assertions during your test and report them into your test results.
 
 ### Metrics, Timings, Logging, CSVs, and more
 

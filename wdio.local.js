@@ -7,7 +7,7 @@ exports.config = {
       browserName: "chrome"
     }
   ],
-  loglevel: "command",
+  logLevel: "command",
   coloredLogs: true,
   framework: "mocha",
   waitforTimeout: 40000,
