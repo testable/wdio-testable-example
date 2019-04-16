@@ -13,6 +13,6 @@ exports.config = {
   waitforTimeout: 40000,
   mochaOpts: {
     ui: "bdd",
-    timeout: 40000
+    timeout: 400000
   }
 };
