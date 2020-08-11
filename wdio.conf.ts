@@ -10,10 +10,10 @@ exports.config = {
   logLevel: "warn",
   coloredLogs: true,
   framework: "mocha",
-  waitforTimeout: 15000,
+  waitforTimeout: 60000,
   mochaOpts: {
     ui: "bdd",
-    timeout: 15000,
+    timeout: 60000,
     require: 'ts-node/register',
     compilers: [
       // optional
