@@ -5,8 +5,7 @@
             "*": [ "./*" ],
             "test/*": ["./test/*"]
         },
-        "types": ["node", "webdriverio",  "@wdio/mocha-framework", "./types/wdio", "@wdio/sync"]
-//        "types": ["node", "webdriverio",  "@wdio/mocha-framework", "@wdio/devtools-service", "./types/wdio"]
+        "types": ["node", "webdriverio", "@wdio/sync", "@wdio/mocha-framework"]
     },
     "include": [
         "./test/**/*.ts"
