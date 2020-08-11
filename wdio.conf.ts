@@ -19,5 +19,8 @@ exports.config = {
       // optional
       'tsconfig-paths/register'
     ]
+  },
+  before: () => {
+    const ta = require('testable-utils');
   }
 };

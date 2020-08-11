@@ -3,12 +3,12 @@
         "baseUrl": ".",
         "paths": {
             "*": [ "./*" ],
-            "src/*": ["./src/*"]
+            "test/*": ["./test/*"]
         },
-        "types": ["node", "webdriverio",  "@wdio/mocha-framework", "./types/wdio"]
+        "types": ["node", "webdriverio",  "@wdio/mocha-framework", "./types/wdio", "@wdio/sync"]
 //        "types": ["node", "webdriverio",  "@wdio/mocha-framework", "@wdio/devtools-service", "./types/wdio"]
     },
     "include": [
-        "./src/**/*.ts"
+        "./test/**/*.ts"
     ]
 }
