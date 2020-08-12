@@ -4,7 +4,7 @@
         "paths": {
             "test/*": ["./test/*"]
         },
-        "types": ["node", "webdriverio", "@wdio/sync", "@wdio/mocha-framework", "testable-utils"]
+        "types": ["node", "@wdio/sync", "@wdio/mocha-framework", "testable-utils"]
     },
     "include": [
         "./test/**/*.ts"
