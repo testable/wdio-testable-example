@@ -1,0 +1,68 @@
+# This workflow does the following on each new pull request:
+#   1. Zip up the contents of the pull request branch
+#   2. Upload and run it as a Webdriver.io test on Testable
+#   3. Wait for the test run to complete
+#   4. Share the results via a comment on the PR
+
+name: Testable upload and run workflow
+
+on:
+  pull_request:
+    secrets:
+      TESTABLE_KEY:
+        description: 'Testable API key to use when running the test and creating a shareable result'
+        required: true
+
+jobs:
+  run-test:
+    runs-on: ubuntu-latest
+    outputs:
+      execution_id: ${{ steps.start-test.outputs.execution_id }}
+      token: ${{ steps.create-public-token.outputs.token }}
+      status: ${{ steps.check-for-success.outputs.status }}
+    steps:
+      - id: zip-repo
+        run: zip -r package.zip *
+      - id: start-test
+        run: >
+          execution_id=$(curl
+          -F "testcase_name=PR Automation"
+          -F "scenario_name=E2E Webdriver.io"
+          -F "conf_name=Functional Test"
+          -F "framework=Mocha"
+          -F "selenium_bindings=wdio"
+          -F "conf_file=wdio.conf.js"
+          -F "files[0]=@package.zip"
+          -F "test_type=Functional"
+          -F "conf_testrunners[0].regions=aws-us-west-2"
+          "https://api.testable.io/start?key=${{ secrets.TESTABLE_KEY }}" | jq -r ".id") && echo "execution_id=$execution_id" >> $GITHUB_OUTPUT
+      - id: create-public-token
+        run: echo "token=world" >> $GITHUB_OUTPUT
+      - id: wait-for-test
+        run: >
+          while [ $(curl -H "X-Testable-Key:$TESTABLE_KEY" --silent https://api.testable.io/executions/${{needs.run-test.outputs.execution_id}} | jq -r ".completed") = "false" ]; do
+            echo -n "."
+            sleep 5
+          done
+      - id: check-for-success
+        run: >
+          if [ $(curl -H "X-Testable-Key:$TESTABLE_KEY" --silent https://api.testable.io/executions/${{needs.run-test.outputs.execution_id}} | jq -r ".success") = "false" ]; then
+            echo "Test FAILED"
+            echo "status=failed" >> $GITHUB_OUTPUT
+            exit 1
+          else 
+            echo "Test SUCCESS"
+            echo "status=succeeded" >> $GITHUB_OUTPUT
+            exit 0
+          fi
+  add-pr-comment:
+    if: ${{ always() }}
+    needs: run-test
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+    steps:
+      - uses: mshick/add-pr-comment@v2
+        with:
+          message: |
+            Test ${{needs.run-test.outputs.status}}. [Click to see results](https://a.testable.io/p/${{needs.run-test.outputs.token}}) or [download as a PDF](https://a.testable.io/p/${{needs.run-test.outputs.token}}/results.pdf).
