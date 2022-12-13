@@ -32,7 +32,7 @@ jobs:
           -F "files[0]=@package.zip"
           -F "test_type=Functional"
           -F "conf_testrunners[0].regions=aws-us-west-2"
-          "https://api.testable.io/start?key=${{ secrets.TESTABLE_KEY }}" | jq -r ".id") && echo "execution_id=$execution_id" >> $GITHUB_OUTPUT
+          "https://api.testable.io/start?key=${{ secrets.TESTABLE_KEY }}") && echo "execution_id=$execution_id" >> $GITHUB_OUTPUT
       - id: create-public-token
         run: echo "token=world" >> $GITHUB_OUTPUT
       - id: wait-for-test
