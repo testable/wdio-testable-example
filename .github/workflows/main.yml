@@ -3,8 +3,9 @@
 #   2. Upload and run it as a Webdriver.io test on Testable
 #   3. Wait for the test run to complete
 #   4. Share the results via a comment on the PR
+# Update the start-test step with the appropriate parameters to run your test (https://docs.testable.io/api/simple.html)
 
-name: Testable workflow
+name: Testable upload and run workflow
 
 on:
   workflow_dispatch:
