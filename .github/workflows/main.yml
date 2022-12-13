@@ -3,12 +3,16 @@
 #   2. Upload and run it as a Webdriver.io test on Testable
 #   3. Wait for the test run to complete
 #   4. Share the results via a comment on the PR
+# Update the start-test step with the appropriate parameters to run your test (https://docs.testable.io/api/simple.html).
+# Make sure to add your API key as an org secret TESTABLE_KEY
+#   This can be found at Org Management => API Keys when logging into Testable: https://a.testable.io)
+#   Add under Settings => Secrets in your GitHub repo
 
-name: Testable workflow
+name: Testable upload and run workflow
 
 on:
-  workflow_dispatch:
-  pull_request:
+  workflow_dispatch: # manual trigger
+  pull_request: # pull request trigger
 jobs:
   run-test:
     runs-on: ubuntu-latest
@@ -20,7 +24,7 @@ jobs:
       - uses: actions/checkout@v1
       - id: zip-repo
         run: zip -r package.zip . -x ".git/*" ".github/*"
-      - id: start-test
+      - id: start-test #update these params for your specific test scenario
         run: >
           execution_id=$(curl
           -F "testcase_name=PR Automation"
@@ -34,7 +38,7 @@ jobs:
           "https://api.testable.io/start?key=${{ secrets.TESTABLE_KEY }}") && echo "execution_id=$execution_id" >> $GITHUB_OUTPUT
       - id: create-public-token
         run: >
-          token=$(curl -X POST https://api.testable.io/executions/${{ steps.start-test.outputs.execution_id }}/share | jq -r ".name") && echo "token=$token" >> $GITHUB_OUTPUT
+          token=$(curl -H "X-Testable-Key:${{ secrets.TESTABLE_KEY }}" --silent -X POST https://api.testable.io/executions/${{ steps.start-test.outputs.execution_id }}/share | jq -r ".name") && echo "token=$token" >> $GITHUB_OUTPUT
       - id: wait-for-test
         run: >
           while [ $(curl -H "X-Testable-Key:${{ secrets.TESTABLE_KEY }}" --silent https://api.testable.io/executions/${{ steps.start-test.outputs.execution_id }} | jq -r ".completed") = "false" ]; do
@@ -62,4 +66,4 @@ jobs:
       - uses: mshick/add-pr-comment@v2
         with:
           message: |
-            Test ${{needs.run-test.outputs.status}}. [Click to see results](https://a.testable.io/p/${{needs.run-test.outputs.token}}) or [download as a PDF](https://a.testable.io/p/${{needs.run-test.outputs.token}}/results.pdf).
+            Test ${{needs.run-test.outputs.status}}. [Click to see results](https://a.testable.io/p/${{needs.run-test.outputs.token}}) or [download as a PDF](https://a.testable.io/api/p/${{needs.run-test.outputs.token}}/results.pdf).

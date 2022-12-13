@@ -1,7 +1,5 @@
 # Webdriver.io Testable Example
 
-**Upgraded to Webdriver.io v5**. Check the v4 branch for an example that is compatible with Webdriver.io v4.x.
-
 An example [Webdriver.io test runner configuration](https://webdriver.io/docs/configurationfile.html) and test spec that is compatible with [Testable](https://testable.io).
 
 See the [Testable Webdriver.io guide](https://testable.io/documentation/selenium/overview.html) for more details.
