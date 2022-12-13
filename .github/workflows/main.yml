@@ -4,15 +4,11 @@
 #   3. Wait for the test run to complete
 #   4. Share the results via a comment on the PR
 
-name: Testable upload and run workflow
+name: Testable workflow
 
 on:
+  workflow_dispatch:
   pull_request:
-    secrets:
-      TESTABLE_KEY:
-        description: 'Testable API key to use when running the test and creating a shareable result'
-        required: true
-
 jobs:
   run-test:
     runs-on: ubuntu-latest
