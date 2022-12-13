@@ -26,7 +26,6 @@ jobs:
           -F "testcase_name=PR Automation"
           -F "scenario_name=E2E Webdriver.io"
           -F "conf_name=Functional Test"
-          -F "framework=Mocha"
           -F "selenium_bindings=wdio"
           -F "conf_file=wdio.conf.js"
           -F "files[0]=@package.zip"
