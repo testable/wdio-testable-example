@@ -36,13 +36,13 @@ jobs:
         run: echo "token=world" >> $GITHUB_OUTPUT
       - id: wait-for-test
         run: >
-          while [ $(curl -H "X-Testable-Key:$TESTABLE_KEY" --silent https://api.testable.io/executions/${{needs.run-test.outputs.execution_id}} | jq -r ".completed") = "false" ]; do
+          while [ $(curl -H "X-Testable-Key:${{ secrets.TESTABLE_KEY }}" --silent https://api.testable.io/executions/${{ steps.start-test.outputs.execution_id }} | jq -r ".completed") = "false" ]; do
             echo -n "."
             sleep 5
           done
       - id: check-for-success
         run: >
-          if [ $(curl -H "X-Testable-Key:$TESTABLE_KEY" --silent https://api.testable.io/executions/${{needs.run-test.outputs.execution_id}} | jq -r ".success") = "false" ]; then
+          if [ $(curl -H "X-Testable-Key:${{ secrets.TESTABLE_KEY }}" --silent https://api.testable.io/executions/${{ steps.start-test.outputs.execution_id }} | jq -r ".success") = "false" ]; then
             echo "Test FAILED"
             echo "status=failed" >> $GITHUB_OUTPUT
             exit 1
