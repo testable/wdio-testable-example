@@ -62,4 +62,4 @@ jobs:
       - uses: mshick/add-pr-comment@v2
         with:
           message: |
-            Test ${{needs.run-test.outputs.status}}. [Click to see results](https://a.testable.io/p/${{needs.run-test.outputs.token}}) or [download as a PDF](https://a.testable.io/p/${{needs.run-test.outputs.token}}/results.pdf).
+            Test ${{needs.run-test.outputs.status}}. [Click to see results](https://a.testable.io/p/${{needs.run-test.outputs.token}}) or [download as a PDF](https://a.testable.io/api/p/${{needs.run-test.outputs.token}}/results.pdf).
