@@ -3,13 +3,16 @@
 #   2. Upload and run it as a Webdriver.io test on Testable
 #   3. Wait for the test run to complete
 #   4. Share the results via a comment on the PR
-# Update the start-test step with the appropriate parameters to run your test (https://docs.testable.io/api/simple.html)
+# Update the start-test step with the appropriate parameters to run your test (https://docs.testable.io/api/simple.html).
+# Make sure to add your API key as an org secret TESTABLE_KEY
+#   This can be found at Org Management => API Keys when logging into Testable: https://a.testable.io)
+#   Add under Settings => Secrets in your GitHub repo
 
 name: Testable upload and run workflow
 
 on:
-  workflow_dispatch:
-  pull_request:
+  workflow_dispatch: # manual trigger
+  pull_request: # pull request trigger
 jobs:
   run-test:
     runs-on: ubuntu-latest
@@ -21,7 +24,7 @@ jobs:
       - uses: actions/checkout@v1
       - id: zip-repo
         run: zip -r package.zip . -x ".git/*" ".github/*"
-      - id: start-test
+      - id: start-test #update these params for your specific test scenario
         run: >
           execution_id=$(curl
           -F "testcase_name=PR Automation"
