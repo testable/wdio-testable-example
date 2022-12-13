@@ -17,10 +17,8 @@ jobs:
       token: ${{ steps.create-public-token.outputs.token }}
       status: ${{ steps.check-for-success.outputs.status }}
     steps:
-      - id: list-contents
-        run: ls -l
       - id: zip-repo
-        run: zip -r package.zip *
+        run: zip -r package.zip . -x ".git/*" ".github/*"
       - id: start-test
         run: >
           execution_id=$(curl
