@@ -1,6 +1,6 @@
 exports.config = {
   specs: [
-    "test/spec/**"
+    "./test/spec/**"
   ],
   capabilities: [
     {

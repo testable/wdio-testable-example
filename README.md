@@ -4,25 +4,15 @@ An example [Webdriver.io test runner configuration](https://webdriver.io/docs/co
 
 See the [Testable Webdriver.io guide](https://testable.io/documentation/selenium/overview.html) for more details.
 
-### Screenshots and Output Files
-
-Any file written to the directory indicated by the `OUTPUT_DIR` environment variable will be captured as part of your [Testable](https://testable.io) test results.
-
-For example (if run locally it will write to the current directory):
-
-```javascript
-browser.saveScreenshot((process.env.OUTPUT_DIR || '.') + '/snapshot.png');
-```
-
 ### Testable Parameters
 
 If your [Testable scenario is parameterized](https://testable.io/documentation/selenium/overview.html) they are accessible as environment variables.
 
 For example, the `TestVar` parameter is accessible as `process.env.PARAM_TESTVAR`.
 
-### Capturing Assertions
+### Capturing Assertions and Tests
 
-Testable will capture all assertions during your test and report them into your test results.
+Testable will capture all assertions and test steps during your test and report them into your test results.
 
 ### Metrics, Timings, Logging, CSVs, and more
 
